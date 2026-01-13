@@ -1,8 +1,16 @@
 import unittest
 
-from main import DeckOfCards
+from main import DeckOfCards, Card
 
 
 class TestDeckOfCards(unittest.TestCase):
     def setUp(self):
         self.testDeck = DeckOfCards()
+
+    def test_len(self):
+        assert len(self.testDeck) == 52
+
+    def test_getitem(self):
+        assert isinstance(self.testDeck[0], Card)
+        with self.assertRaises(IndexError):
+            self.testDeck[52]
