@@ -1,6 +1,7 @@
 class Vector2D:
-    def __init__(self, numOne, numTwo):
-        self.vector = (numOne, numTwo)
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     def __repr__(self):
-        return f"Vector2D(vector=({self.vector[0]},{self.vector[1]})"
+        return f"Vector2D(x={self.x}, y={self.y})"
