@@ -30,3 +30,12 @@ class TestDeckOfCards(unittest.TestCase):
         assert beforeShuffleOne != afterShuffleOne
         assert beforeShuffleTwo != afterShuffleTwo
         assert beforeShuffleThree != afterShuffleThree
+
+    def test_for_loop(self):
+        counter = 0
+
+        for card in self.testDeck:
+            assert isinstance(card, Card)
+            counter += 1
+
+        assert counter == 52
