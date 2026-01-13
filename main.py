@@ -22,3 +22,6 @@ class DeckOfCards:
 
     def __getitem__(self, idx):
         return self.deck[idx]
+
+    def __setitem__(self, idx, val):
+        self.deck[idx] = val
