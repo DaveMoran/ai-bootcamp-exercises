@@ -1,0 +1,19 @@
+# Uv
+.uv/
+.venv/
+.env
+
+# Byte-code files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Editors and IDEs
+.idea/  # Example for PyCharm/IntelliJ
+.vscode/ # Example for VS Code, if you want to ignore workspace settings
