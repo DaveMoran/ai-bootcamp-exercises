@@ -1,3 +1,9 @@
+"""
+Exercise 2: 2D Vector Class
+
+An X/Y Vector class that can be used for displaying points on a graph
+"""
+
 import math
 
 
