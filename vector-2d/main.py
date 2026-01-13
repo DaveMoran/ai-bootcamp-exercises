@@ -16,7 +16,7 @@ class Vector2D:
         return f"Vector2D(x={self.x}, y={self.y})"
 
     def __str__(self):
-        return f"Vector2D Class. X:{self.x} Y:{self.y}"
+        return f"Vector2D | X:{self.x}, Y:{self.y}"
 
     def __add__(self, other):
         return Vector2D(self.x + other.x, self.y + other.y)

@@ -8,11 +8,13 @@ class TestDeckOfCards(unittest.TestCase):
     def setUp(self):
         self.testVector = Vector2D(2, 3)
 
-    def testRepr(self):
-        pass
+    def test_repr(self):
+        repr_str = repr(self.testVector)
+        assert repr_str == "Vector2D(x=2, y=3)"
 
-    def testStr(self):
-        pass
+    def test_str(self):
+        repr_str = str(self.testVector)
+        assert repr_str == "Vector2D | X:2, Y:3"
 
     def testAdd(self):
         pass
