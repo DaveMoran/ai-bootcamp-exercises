@@ -17,3 +17,4 @@ build/
 # Editors and IDEs
 .idea/  # Example for PyCharm/IntelliJ
 .vscode/ # Example for VS Code, if you want to ignore workspace settings
+.DS_Store
