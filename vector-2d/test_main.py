@@ -23,11 +23,13 @@ class TestDeckOfCards(unittest.TestCase):
         assert added_vector.x == 7
         assert added_vector.y == 10
 
-    def testMul(self):
+    def test_mul(self):
         mult_vector = self.test_vector * 4
 
         assert mult_vector.x == 8
         assert mult_vector.y == 12
 
-    def testAbs(self):
-        pass
+    def test_abs(self):
+        abs_vector = abs(self.test_vector)
+        rounded_vec = round(abs_vector, 3)
+        assert rounded_vec == 3.606
