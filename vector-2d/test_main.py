@@ -24,7 +24,10 @@ class TestDeckOfCards(unittest.TestCase):
         assert added_vector.y == 10
 
     def testMul(self):
-        pass
+        mult_vector = self.test_vector * 4
+
+        assert mult_vector.x == 8
+        assert mult_vector.y == 12
 
     def testAbs(self):
         pass
