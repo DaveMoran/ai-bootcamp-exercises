@@ -6,7 +6,7 @@ description = "Week 1 Exercise 1"
 authors = [
     { name="Dave Moran", email="dave.moran118@gmail.com" },
 ]
-readme = "README.md"
+readme = "../README.md"
 license = "MIT"
 requires-python = ">=3.12,<4.0"
 dynamic = ["version"]
