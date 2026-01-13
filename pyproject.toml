@@ -96,9 +96,5 @@ ignore = [
 python_files = ["*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = [
-    "src",
-    "tests",
-]
 norecursedirs = []
 filterwarnings = []
