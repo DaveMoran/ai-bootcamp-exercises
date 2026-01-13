@@ -1,3 +1,6 @@
+import math
+
+
 class Vector2D:
     def __init__(self, x, y):
         self.x = x
@@ -16,4 +19,4 @@ class Vector2D:
         return Vector2D(self.x * scalar, self.y * scalar)
 
     def __abs__(self):
-        pass
+        return math.hypot(self.x, self.y)
