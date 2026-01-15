@@ -1,6 +1,8 @@
-# Week 1 Exercises
+# Bootcamp Exercises
 
-## Exercise 1: Deck of Cards
+## Week 1
+
+### Exercise 1: Deck of Cards
 
 Build a Deck class that:
 
@@ -10,7 +12,7 @@ Build a Deck class that:
 - Can be shuffled using random.shuffle()
 - Can be iterated over with a for loop
 
-## Exercise 2: 2D Vector Class
+### Exercise 2: 2D Vector Class
 
 Create a 2D Vector class that:
 
@@ -19,3 +21,11 @@ Create a 2D Vector class that:
 - Implements __add__ for vector addition
 - Implements __mul__ for scalar multiplication
 - Implements __abs__ for vector magnitude
+
+## Week 2
+
+## Exercise 1 - Timing Decorator
+
+- Implement basic timing decorator
+- Test on sample functions
+- Add to AST Analyzer codebase
