@@ -1,20 +1,4 @@
-import time
-import functools
-
 from main import ast_timing
-
-
-@functools.cache
-@ast_timing()
-def fibonacci_cached(n):
-    if n < 2:
-        return n
-    return fibonacci_cached(n - 2) + fibonacci_cached(n - 1)
-
-
-@ast_timing()
-def snooze(seconds):
-    time.sleep(seconds)
 
 
 @ast_timing()
