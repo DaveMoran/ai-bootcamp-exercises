@@ -1,6 +1,6 @@
 import time
 
-DEFAULT_FMT = "[time | 0.0s] name(*args) -> result"
+DEFAULT_FMT = "[{curr_time} | {time_taken:0.2f}s] {fn_name}({args}) -> {result}"
 
 
 class ast_timing:
@@ -8,7 +8,9 @@ class ast_timing:
         self.fmt = fmt
 
     def __call__(self, fn):
+
         def timestamp(*_args):
+            curr_time = time.strftime("%H:%M:%S", time.localtime())
             start_time = time.perf_counter()
             _result = fn(*_args)
             time_taken = time.perf_counter() - start_time
