@@ -4,8 +4,6 @@ import logging
 LOG_NAME = None
 LOG_MESSAGE = None
 
-logging.basicConfig(level=logging.DEBUG)
-
 
 class ast_log:
     def __init__(self, level, name=LOG_NAME, message=LOG_MESSAGE):
@@ -25,11 +23,3 @@ class ast_log:
             return fn(*args, **kwargs)
 
         return wrapper
-
-
-@ast_log(logging.DEBUG)
-def add(x, y):
-    return x + y
-
-
-add(2, 3)
