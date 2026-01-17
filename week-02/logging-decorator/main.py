@@ -1,6 +1,9 @@
-def main():
-    print("Hello from logging-decorator!")
+import functools
+import logging
 
 
-if __name__ == "__main__":
-    main()
+class logging_decorator:
+    def __init__(self):
+        self.logname = ""
+        self.log = ""
+        self.logmsg = ""
