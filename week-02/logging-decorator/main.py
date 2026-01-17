@@ -4,6 +4,8 @@ import logging
 LOG_NAME = None
 LOG_MESSAGE = None
 
+logging.basicConfig(level=logging.DEBUG)
+
 
 class logging_decorator:
     def __init__(self, level, name=LOG_NAME, message=LOG_MESSAGE):
@@ -19,3 +21,11 @@ class logging_decorator:
             return fn(*args, **kwargs)
 
         return wrapper
+
+
+@logging_decorator(logging.DEBUG)
+def add(x, y):
+    return x + y
+
+
+add(2, 3)
