@@ -7,7 +7,7 @@ LOG_MESSAGE = None
 logging.basicConfig(level=logging.DEBUG)
 
 
-class logging_decorator:
+class ast_log:
     def __init__(self, level, name=LOG_NAME, message=LOG_MESSAGE):
         self.level = level
         self.logname = name
@@ -27,7 +27,7 @@ class logging_decorator:
         return wrapper
 
 
-@logging_decorator(logging.DEBUG)
+@ast_log(logging.DEBUG)
 def add(x, y):
     return x + y
 
