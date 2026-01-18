@@ -21,7 +21,20 @@ class FileTraversalIterator:
         self.lines = lines
         self.idx = 0
 
+    def __next__(self):
+        try:
+            line = self.lines[self.idx]
+        except IndexError:
+            raise StopIteration()
+        self.idx += 1
+        return line
+
 
 ft = FileTraversal("./test.md")
 
-list(ft)
+print(ft)
+
+for line in ft:
+    print(line)
+
+print(list(ft))
