@@ -36,9 +36,18 @@ class FileTraversalIterator:
 ft = FileTraversal("./test.md")
 
 
-def starts_with_vowel(line):
-    print(line[0])
-    return line[0].lower() in "aeiou"
+def lines_starting_with_vowel(lines):
+    for line in lines:
+        if line[0].lower() in "aeiou":
+            yield line
 
 
-print(list(filter(starts_with_vowel, iter(ft))))
+def strip_and_uppercase(lines):
+    for line in lines:
+        yield line.strip().upper()
+
+
+result = strip_and_uppercase(lines_starting_with_vowel(ft))
+
+for item in result:
+    print(item)
