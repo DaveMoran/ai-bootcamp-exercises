@@ -1,6 +1,16 @@
-def main():
-    print("Hello from file-proccessing-generator!")
+class FileTraversal:
+
+    def __init__(self, directory):
+        self.directory = directory
+        self.files = []
+
+    def __len__(self):
+        return len(self.files)
+
+    def __repr__(self):
+        return f"FileTraversal(directory={self.directory}, files={len(self.files)})"
 
 
-if __name__ == "__main__":
-    main()
+ft = FileTraversal("../")
+
+print(ft)
