@@ -3,7 +3,7 @@ class FileTraversal:
     def __init__(self, file):
         self.file = file
         self.file_text = self.load_file()
-        self.lines = []
+        self.lines = str.splitlines(self.file_text)
 
     def __len__(self):
         return len(self.lines)
@@ -18,4 +18,4 @@ class FileTraversal:
 
 ft = FileTraversal("./test.md")
 
-print(ft.file_text)
+print(ft)
