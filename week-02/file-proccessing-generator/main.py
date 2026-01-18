@@ -5,11 +5,8 @@ class FileTraversal:
         self.file_text = self.load_file()
         self.lines = str.splitlines(self.file_text)
 
-    def __getitem__(self, i):
-        return self.lines[i]
-
-    def __len__(self):
-        return len(self.lines)
+    def __iter__(self):
+        return FileTraversalIterator(self.lines)
 
     def __repr__(self):
         return f"FileTraversal(file={self.file}, lines={len(self.lines)})"
@@ -19,15 +16,12 @@ class FileTraversal:
         return file_text.read()
 
 
+class FileTraversalIterator:
+    def __init__(self, lines):
+        self.lines = lines
+        self.idx = 0
+
+
 ft = FileTraversal("./test.md")
 
-ft_iter = iter(ft)
-
-print(ft_iter)
-
-print(next(ft_iter))
-print(next(ft_iter))
-print(next(ft_iter))
-print(next(ft_iter))
-print(next(ft_iter))
-print(next(ft_iter))
+list(ft)
