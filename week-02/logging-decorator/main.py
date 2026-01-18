@@ -1,6 +1,8 @@
 import functools
 import logging
 
+logging.basicConfig(level=logging.DEBUG)
+
 LOG_NAME = None
 LOG_MESSAGE = None
 
@@ -19,7 +21,21 @@ class ast_log:
 
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
+            self.log.log(logging.DEBUG, f"Begin Function {self.logmsg} | Args: {args}")
+
             self.log.log(self.level, self.logmsg)
-            return fn(*args, **kwargs)
+            result = fn(*args, **kwargs)
+            self.log.log(
+                logging.DEBUG, f"Function {self.logname} Complete. Result: {result}"
+            )
+            return result
 
         return wrapper
+
+
+@ast_log(logging.DEBUG)
+def add(a, b):
+    return a + b
+
+
+add(2, 3)
