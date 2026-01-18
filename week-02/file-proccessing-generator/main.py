@@ -1,3 +1,6 @@
+import re
+
+
 class FileTraversal:
 
     def __init__(self, file):
@@ -42,12 +45,24 @@ def lines_starting_with_vowel(lines):
             yield line
 
 
+def lines_containing_keyword(lines, keyword):
+    for line in lines:
+        if keyword.lower() in line.lower():
+            yield line
+
+
 def strip_and_uppercase(lines):
     for line in lines:
         yield line.strip().upper()
 
 
-result = strip_and_uppercase(lines_starting_with_vowel(ft))
+def lines_with_numbers_extracted(lines):
+    for line in lines:
+        new_line = re.sub(r"\d+", "", line)
+        yield new_line
+
+
+result = lines_containing_keyword(lines_with_numbers_extracted(ft), "TwO")
 
 for item in result:
     print(item)
