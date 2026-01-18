@@ -29,12 +29,16 @@ class FileTraversalIterator:
         self.idx += 1
         return line
 
+    def __iter__(self):
+        return self
+
 
 ft = FileTraversal("./test.md")
 
-print(ft)
 
-for line in ft:
-    print(line)
+def starts_with_vowel(line):
+    print(line[0])
+    return line[0].lower() in "aeiou"
 
-print(list(ft))
+
+print(list(filter(starts_with_vowel, iter(ft))))
