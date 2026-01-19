@@ -1,42 +1,13 @@
 import re
 
 
-class FileTraversal:
-
-    def __init__(self, file):
-        self.file = file
-        self.lines = self.read_lines()
-
-    def __iter__(self):
-        return FileTraversalIterator(self.lines)
-
-    def __repr__(self):
-        return f"FileTraversal(file={self.file}, lines={len(self.lines)})"
-
-    def read_lines(self):
-        with open(self.file) as f:
-            for line in f:
-                yield line
+def read_lines(filepath):
+    with open(filepath) as f:
+        for line in f:
+            yield line
 
 
-class FileTraversalIterator:
-    def __init__(self, lines):
-        self.lines = lines
-        self.idx = 0
-
-    def __next__(self):
-        try:
-            line = next(self.lines)
-        except IndexError:
-            raise StopIteration()
-        self.idx += 1
-        return line
-
-    def __iter__(self):
-        return self
-
-
-ft = FileTraversal("./test.md")
+ft = read_lines("./test.md")
 
 
 def lines_starting_with_vowel(lines):
@@ -47,7 +18,7 @@ def lines_starting_with_vowel(lines):
 
 def lines_containing_keyword(lines, keyword):
     for line in lines:
-        if keyword.lower() in line.lower():
+        if keyword.lower() in line:
             yield line
 
 
@@ -58,11 +29,11 @@ def strip_and_uppercase(lines):
 
 def lines_with_numbers_extracted(lines):
     for line in lines:
-        new_line = re.sub(r"\d+", "", line)
-        yield new_line
+        numbers = re.findall(r"\d+", line)
+        yield numbers
 
 
-result = lines_containing_keyword(lines_with_numbers_extracted(ft), "TwO")
+result = lines_with_numbers_extracted(ft)
 
 for item in result:
     print(item)
