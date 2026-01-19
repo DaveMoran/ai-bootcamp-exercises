@@ -19,7 +19,13 @@ class retry:
                     return fn(*args, **kwargs)
                 except Exception as e:
                     if attempt == self.max_attempts - 1:
-                        raise
+                        print(f"Attempted to run function {self.max_attempts} times")
+                        if isinstance(e, TypeError):
+                            print(
+                                "Looks like you used the wrong type of vars. Check your arguements"
+                            )
+                        else:
+                            raise
                     time.sleep(self.delay * (2**attempt))
 
         return retrying
