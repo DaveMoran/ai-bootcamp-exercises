@@ -1,3 +1,4 @@
+import functools
 import time
 
 
@@ -12,6 +13,7 @@ class retry:
         def custom_validation(result):
             """Custom validation logic placed here to exit out of while loop"""
 
+        @functools.wraps(fn)
         def retrying(*_args):
             """The retry function that will be run under the hood"""
 
