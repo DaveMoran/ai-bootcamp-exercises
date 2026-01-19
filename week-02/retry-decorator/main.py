@@ -38,4 +38,6 @@ class retry:
                     print(f"Attempt {attempt + 1} failed, retrying in {wait_time}s...")
                     time.sleep(wait_time)
 
+                raise last_exception
+
         return retrying
