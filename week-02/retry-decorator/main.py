@@ -14,16 +14,15 @@ class retry:
             """Custom validation logic placed here to exit out of while loop"""
 
         @functools.wraps(fn)
-        def retrying(*_args):
+        def retrying(*args, **kwargs):
             """The retry function that will be run under the hood"""
 
-            counter = 0
-            while counter < self.max_attempts:
-                time.sleep(self.delay)
-                result = fn(*_args)
-                if result:
-                    return result
-
-            raise Exception(f"Function failed after {self.max_attempts} tries")
+            for attempt in range(self.max_attempts):
+                try:
+                    return fn(*args, **kwargs)
+                except Exception as e:
+                    if attempt == self.max_attempts - 1:
+                        raise
+                    time.sleep(self.delay * (2**attempt))
 
         return retrying
