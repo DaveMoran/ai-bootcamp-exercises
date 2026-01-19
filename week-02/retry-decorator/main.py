@@ -3,7 +3,7 @@ import time
 
 
 class retry:
-    def __init__(self, max_attempts, delay):
+    def __init__(self, max_attempts=3, delay=1):
         """Setup the arguments to pass to our decorator"""
         self.max_attempts = max_attempts
         self.delay = delay
@@ -23,6 +23,10 @@ class retry:
                         if isinstance(e, TypeError):
                             print(
                                 "Looks like you used the wrong type of vars. Check your arguements"
+                            )
+                        elif isinstance(e, ZeroDivisionError):
+                            print(
+                                "Your second arguement is a 0, that's mathmatically impossible to do. Change it out"
                             )
                         else:
                             raise
