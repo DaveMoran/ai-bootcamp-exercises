@@ -1,6 +1,9 @@
 from main import retry
 from unittest.mock import patch
 
+import math
+import pytest
+
 
 @retry(max_attempts=3, delay=1)
 def divide(a, b):
@@ -19,3 +22,11 @@ def test_custom_exception(capsys):
     captured = capsys.readouterr()
 
     assert "mathmatically impossible" in captured.out
+
+
+def test_fallback_exception():
+    with pytest.raises(OverflowError) as exc_info:
+        divide(math.exp(999), 1)
+
+    assert exc_info.type is not TypeError
+    assert exc_info.type is not ZeroDivisionError
