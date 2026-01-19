@@ -3,7 +3,7 @@ import time
 
 
 class retry:
-    def __init__(self, max_attempts=3, delay=1):
+    def __init__(self, max_attempts, delay):
         """Setup the arguments to pass to our decorator"""
         self.max_attempts = max_attempts
         self.delay = delay
