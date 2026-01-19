@@ -10,9 +10,6 @@ class retry:
 
     def __call__(self, fn):
 
-        def custom_validation(result):
-            """Custom validation logic placed here to exit out of while loop"""
-
         @functools.wraps(fn)
         def retrying(*args, **kwargs):
             """The retry function that will be run under the hood"""
