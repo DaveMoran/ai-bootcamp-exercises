@@ -1,4 +1,4 @@
-from time import sleep, time
+from time import sleep, time, strftime, localtime
 from typing import Any
 import asyncio
 
@@ -17,6 +17,9 @@ async def greet_async(name: str, delay: float) -> str:
     # TODO: Implement
     await asyncio.sleep(delay)
     greeting = f"Hello, {name}!"
+    print(
+        f"Greeting: {greeting} at ({strftime('%Y-%m-%d %H:%M:%S', localtime(time()))})"
+    )
     return greeting
 
 
@@ -33,7 +36,11 @@ async def fetch_data_async(item_id: int, delay: float) -> dict:
     """
     # TODO: Implement
     await asyncio.sleep(delay)
-    data = {"item_id": item_id, "data": "Sample Data"}
+    data = {
+        "item_id": item_id,
+        "timestamp": strftime("%Y-%m-%d %H:%M:%S", localtime(time())),
+    }
+    print(f"Fetched: {data}")
     return data
 
 
