@@ -93,3 +93,6 @@ if __name__ == "__main__":
     stats = array_statistics(arr)
 
     print(f"Array stats: {stats}")
+
+    filtered = filter_array(arr, 50)
+    print(f"Filtered (>50): {filtered.size} elements")
