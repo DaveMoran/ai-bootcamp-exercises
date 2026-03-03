@@ -1,5 +1,7 @@
 import numpy as np
 
+np.set_printoptions(legacy="1.25")
+
 
 def create_sample_array() -> np.ndarray:
     """
@@ -23,10 +25,10 @@ def array_statistics(arr: np.ndarray) -> dict:
         Dictionary with mean, std, min, max
     """
     # TODO: Use arr.mean(), arr.std(), etc.
-    np_mean = arr.mean()
-    np_std = arr.std()
-    np_min = arr.min()
-    np_max = arr.max()
+    np_mean = np.mean(arr)
+    np_std = round(np.std(arr), 2)
+    np_min = np.min(arr)
+    np_max = np.max(arr)
 
     return {"mean": np_mean, "std": np_std, "min": np_min, "max": np_max}
 
@@ -87,4 +89,7 @@ def normalize_array(arr: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    print(create_sample_array)
+    arr = create_sample_array()
+    stats = array_statistics(arr)
+
+    print(f"Array stats: {stats}")
