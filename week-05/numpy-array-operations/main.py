@@ -82,10 +82,9 @@ def normalize_array(arr: np.ndarray) -> np.ndarray:
         Normalized array
     """
     # TODO: Implement using vectorized operations
-    mask = (arr - arr.min()) / (arr.max() - arr.min())
-    normalized_arr = arr[mask]
+    data_norm = (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
 
-    return normalized_arr
+    return data_norm
 
 
 if __name__ == "__main__":
@@ -96,3 +95,6 @@ if __name__ == "__main__":
 
     filtered = filter_array(arr, 50)
     print(f"Filtered (>50): {filtered.size} elements")
+
+    normalized_arr = normalize_array(arr)
+    print(f"Normalized range: {normalized_arr}")
