@@ -87,6 +87,24 @@ def normalize_array(arr: np.ndarray) -> np.ndarray:
     return data_norm
 
 
+def apply_threshold(arr: np.ndarray, low: float, high: float) -> np.ndarray:
+    """
+    Clip array values to [low, high] range.
+
+    Args:
+        arr: Input array
+        low: Minimum value
+        high: Maximum value
+
+    Returns:
+        Clipped array
+    """
+    # TODO: Use np.clip()
+    clipped_arr = np.clip(arr, low, high)
+
+    return clipped_arr
+
+
 if __name__ == "__main__":
     arr = create_sample_array()
     stats = array_statistics(arr)
@@ -98,3 +116,6 @@ if __name__ == "__main__":
 
     normalized_arr = normalize_array(arr)
     print(f"Normalized range: {normalized_arr}")
+
+    clipped_arr = apply_threshold(arr, 10, 50)
+    print(f"Clipped array: {clipped_arr}")
