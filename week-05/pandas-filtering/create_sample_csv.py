@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime, timedelta
 
-with open("exercises/sample_data/logs.csv", "w", newline="") as f:
+with open("sample_data/logs.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["timestamp", "level", "source", "message", "response_time"])
 
