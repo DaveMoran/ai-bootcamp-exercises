@@ -16,7 +16,6 @@ def load_logs(filepath: str) -> pd.DataFrame:
     # TODO: Use pd.read_csv()
     # Parse timestamp column as datetime
     logs = pd.read_csv(filepath, parse_dates=['timestamp'])
-    print(logs)
     return logs
 
 
@@ -31,7 +30,8 @@ def inspect_data(df: pd.DataFrame) -> dict:
         Dictionary with shape, columns, dtypes
     """
     # TODO: Use df.shape, df.columns, df.dtypes
-    pass
+    data = {'shape': df.shape, 'columns': df.columns, 'dtypes': df.dtypes}
+    return data
 
 
 def filter_by_level(df: pd.DataFrame, level: str) -> pd.DataFrame:
@@ -125,7 +125,8 @@ def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
 
 def main():
     print("Hello from pandas-filtering!")
-    load_logs('./sample_data/logs.csv')
+    logs = load_logs('./sample_data/logs.csv')
+    data = inspect_data(logs)
 
 
 if __name__ == "__main__":
