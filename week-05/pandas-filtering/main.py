@@ -45,8 +45,8 @@ def filter_by_level(df: pd.DataFrame, level: str) -> pd.DataFrame:
     Returns:
         Filtered DataFrame
     """
-    # TODO: Use boolean indexing
-    pass
+    filtered_df = df.loc[df["level"] == level]
+    return filtered_df
 
 
 def filter_by_time_range(df: pd.DataFrame, start: str, end: str) -> pd.DataFrame:
@@ -127,6 +127,10 @@ def main():
     print("Hello from pandas-filtering!")
     logs = load_logs('./sample_data/logs.csv')
     data = inspect_data(logs)
+    print(data)
+
+    error_logs = filter_by_level(logs, 'ERROR')
+    print(inspect_data(error_logs))
 
 
 if __name__ == "__main__":
