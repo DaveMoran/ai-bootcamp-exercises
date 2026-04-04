@@ -1,3 +1,5 @@
+from json import load
+
 import pandas as pd
 
 
@@ -13,7 +15,9 @@ def load_logs(filepath: str) -> pd.DataFrame:
     """
     # TODO: Use pd.read_csv()
     # Parse timestamp column as datetime
-    pass
+    logs = pd.read_csv(filepath, parse_dates=['timestamp'])
+    print(logs)
+    return logs
 
 
 def inspect_data(df: pd.DataFrame) -> dict:
@@ -121,6 +125,7 @@ def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
 
 def main():
     print("Hello from pandas-filtering!")
+    load_logs('./sample_data/logs.csv')
 
 
 if __name__ == "__main__":
