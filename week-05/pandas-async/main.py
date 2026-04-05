@@ -80,7 +80,9 @@ async def read_and_parse_log(filepath: str) -> list[LogEntry]:
     log_entries = []
     async with aiofiles.open(filepath, "r") as afp:
         async for line in afp:
-            log_entries.append(await parse_log_line(line))
+            entry = await parse_log_line(line)
+            if entry is not None:
+                log_entries.append(entry)
 
     return log_entries
 
@@ -147,7 +149,7 @@ def analyze_logs(df: pd.DataFrame) -> dict:
         "level_distribution": df.groupby("level").size(),
         "avg_response_time": df["response_time"].mean(),
         "errors_per_minute": errors_per_minute,
-        "slowest_requests": df.sort_values("response_time").head(5),
+        "slowest_requests": df.sort_values("response_time", ascending=False).head(5),
     }
 
 
