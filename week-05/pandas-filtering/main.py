@@ -87,8 +87,8 @@ def filter_slow_requests(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
     Returns:
         Filtered DataFrame
     """
-    # TODO: Use boolean indexing on response_time
-    pass
+    filtered_df = df.loc[df["response_time"] > threshold]
+    return filtered_df
 
 
 def count_by_level(df: pd.DataFrame) -> pd.Series:
@@ -145,6 +145,9 @@ def main():
 
     logs_before_eleven = filter_by_time_range(logs, '', "2026-02-05 11:00:00")
     print(inspect_data(logs_before_eleven))
+
+    logs_over_two_hundred_ms = filter_slow_requests(logs, 200)
+    print(inspect_data(logs_over_two_hundred_ms))
 
 
 if __name__ == "__main__":
