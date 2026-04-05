@@ -117,7 +117,8 @@ def average_response_time_by_source(df: pd.DataFrame) -> pd.Series:
         Series with source -> avg_response_time
     """
     # TODO: Use df.groupby('source')['response_time'].mean()
-    pass
+    avg = df.groupby('source')['response_time'].mean()
+    return avg
 
 
 def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
@@ -152,6 +153,9 @@ def main():
 
     num_errors = count_by_level(logs)
     print(num_errors)
+
+    source_avg = average_response_time_by_source(logs)
+    print(source_avg)
 
 
 if __name__ == "__main__":
