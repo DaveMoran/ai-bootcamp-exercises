@@ -53,7 +53,19 @@ async def parse_log_line(line: str) -> Optional[LogEntry]:
     else:
         return None
 
-    return LogEntry(datetime, level, "", "", 0)
+    source = re.search("\]\s+(\w+)", line)
+    if source:
+        source = source.group(0)
+    else:
+        return None
+
+    message = re.search(":\s*(.*?)\s*\(", line)
+    if message:
+        message = message.group(0)
+    else:
+        return None
+
+    return LogEntry(datetime, level, source, message, 0)
 
 
 async def read_and_parse_log(filepath: str) -> list[LogEntry]:
