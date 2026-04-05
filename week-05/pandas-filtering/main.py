@@ -131,8 +131,7 @@ def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
         Filtered DataFrame
     """
     # TODO: Combine multiple conditions
-    errors = filter_by_level(df, 'ERROR')
-    slow_errors = filter_slow_requests(errors, threshold)
+    slow_errors = filter_slow_requests(filter_by_level(df, 'ERROR'), threshold)
     return slow_errors
 
 
