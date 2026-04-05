@@ -186,14 +186,11 @@ async def main():
     results = await run_pipeline(files)
     print(f"Read {results['total_count']} total log entries")
 
-
-    # Analysis Results:
-    # -----------------
-    # Total logs: 1500
-    # Level distribution:
-    # INFO: 1050 (70.0%)
-    # WARN: 300 (20.0%)
-    # ERROR: 150 (10.0%)
+    print("\nAnalysis Results:")
+    print("-----------------")
+    print(f"Total logs: {results['total_count']}")
+    print("Level distribution:")
+    print(results['level_distribution'].to_string()) # TODO - add percentage as new column
 
     # Performance:
     # Average response time: 275ms
