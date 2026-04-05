@@ -138,13 +138,16 @@ def analyze_logs(df: pd.DataFrame) -> dict:
         Analysis results dictionary
     """
     # TODO: Implement all analyses
-    print(df)
+    error_count = df[df["level"] == "ERROR"].shape[0]
+    minutes = (df["timestamp"].max() - df["timestamp"].min()).total_seconds() / 60
+    errors_per_minute = error_count / minutes
+
     return {
-        'total_count': 0,
-        'level_distribution': 0,
-        'avg_response_time': 0,
-        'errors_per_minute': 0,
-        'slowest_requests': []
+        "total_count": df.shape[0],
+        "level_distribution": df.groupby("level").size(),
+        "avg_response_time": df.groupby("source")["response_time"].mean(),
+        "errors_per_minute": errors_per_minute,
+        "slowest_requests": df.sort_values("response_time").head(5),
     }
 
 
@@ -179,10 +182,10 @@ async def main():
         "./sample_data/app_3.log",
     ]
     print(f"Processing {len(files)} log files asynchronously...")
-    
+
     results = await run_pipeline(files)
-    print(results)
-    # Read 1500 total log entries
+    print(f"Read {results['total_count']} total log entries")
+
 
     # Analysis Results:
     # -----------------
