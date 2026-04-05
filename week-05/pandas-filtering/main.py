@@ -102,7 +102,8 @@ def count_by_level(df: pd.DataFrame) -> pd.Series:
         Series with level counts
     """
     # TODO: Use df.groupby('level').size()
-    pass
+    count = df.groupby('level').size()
+    return count
 
 
 def average_response_time_by_source(df: pd.DataFrame) -> pd.Series:
@@ -148,6 +149,9 @@ def main():
 
     logs_over_two_hundred_ms = filter_slow_requests(logs, 200)
     print(inspect_data(logs_over_two_hundred_ms))
+
+    num_errors = count_by_level(logs)
+    print(num_errors)
 
 
 if __name__ == "__main__":
