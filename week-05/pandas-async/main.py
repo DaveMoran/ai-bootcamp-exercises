@@ -145,7 +145,7 @@ def analyze_logs(df: pd.DataFrame) -> dict:
     return {
         "total_count": df.shape[0],
         "level_distribution": df.groupby("level").size(),
-        "avg_response_time": df.groupby("source")["response_time"].mean(),
+        "avg_response_time": df["response_time"].mean(),
         "errors_per_minute": errors_per_minute,
         "slowest_requests": df.sort_values("response_time").head(5),
     }
@@ -192,9 +192,10 @@ async def main():
     print("Level distribution:")
     print(results['level_distribution'].to_string()) # TODO - add percentage as new column
 
-    # Performance:
-    # Average response time: 275ms
-    # Error rate: 1.5 errors/minute
+    print("\nPerformance:")
+    print(f"Average response time: {results['avg_response_time']}ms")
+    print(f"Error rate: {results['errors_per_minute']} errors/minute:")
+    #
 
     # Slowest requests:
     # 1. 2026-02-05 10:15:20 [WARN] api: Message 184 (498ms)
