@@ -1,5 +1,3 @@
-from json import load
-
 import pandas as pd
 from dateutil import parser
 
@@ -63,7 +61,7 @@ def filter_by_time_range(df: pd.DataFrame, start: str, end: str) -> pd.DataFrame
         Filtered DataFrame
     """
     # TODO: Convert strings to datetime, filter
-    filtered_df = df
+    filtered_df = df.copy()
     if start:
         filtered_df = df.loc[
             df["timestamp"] >= parser.parse(start)
@@ -138,7 +136,7 @@ def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
     return slow_errors
 
 
-def main():
+def main() -> None:
     logs = load_logs('./sample_data/logs.csv')
     data = inspect_data(logs)
 
@@ -150,7 +148,7 @@ def main():
     print("\nAverage response time by source:")
     print(average_response_time_by_source(logs).to_string())
 
-    # Slow errors (>200ms): 8 rows
+    print(f'\nSlow errors (>200ms): {inspect_data(find_slow_errors(logs, 200))['shape'][0]}')
 
 
 if __name__ == "__main__":
