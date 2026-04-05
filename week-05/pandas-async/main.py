@@ -101,7 +101,8 @@ async def process_multiple_logs(filepaths: list[str]) -> list[LogEntry]:
         coroutines.append(read_and_parse_log(path))
 
     logs = []
-    logs.extend(await asyncio.gather(*coroutines))
+    for result in await asyncio.gather(*coroutines):
+        logs.extend(result)
 
     return logs
 
@@ -116,7 +117,7 @@ def entries_to_dataframe(entries: list[LogEntry]) -> pd.DataFrame:
         Pandas DataFrame
     """
     # TODO: Convert to list of dicts, create DataFrame
-    return pd.DataFrame(entries)
+    return pd.DataFrame([entry.to_dict() for entry in entries])
 
 
 def analyze_logs(df: pd.DataFrame) -> dict:
@@ -137,6 +138,7 @@ def analyze_logs(df: pd.DataFrame) -> dict:
         Analysis results dictionary
     """
     # TODO: Implement all analyses
+    print(df)
     return {
         'total_count': 0,
         'level_distribution': 0,
