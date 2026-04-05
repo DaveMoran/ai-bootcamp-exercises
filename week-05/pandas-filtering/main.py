@@ -142,25 +142,23 @@ def main():
     print("Hello from pandas-filtering!")
     logs = load_logs('./sample_data/logs.csv')
     data = inspect_data(logs)
-    print(data)
 
-    error_logs = filter_by_level(logs, 'ERROR')
-    print(inspect_data(error_logs))
+    print(f'Dataset: {data['shape'][0]} rows, {data['shape'][1]} columns')
 
-    logs_before_eleven = filter_by_time_range(logs, '', "2026-02-05 11:00:00")
-    print(inspect_data(logs_before_eleven))
+    # Level counts:
+    # INFO     900
+    # WARN      80
+    # ERROR     20
 
-    logs_over_two_hundred_ms = filter_slow_requests(logs, 200)
-    print(inspect_data(logs_over_two_hundred_ms))
+    # Average response time by source:
+    # service-0    149.5
+    # service-1    149.6
+    # service-2    149.7
+    # service-3    149.8
+    # service-4    149.9
 
-    num_errors = count_by_level(logs)
-    print(num_errors)
-
-    source_avg = average_response_time_by_source(logs)
-    print(source_avg)
-
-    slow_errors = find_slow_errors(logs, 200)
-    print(inspect_data(slow_errors))
+    # Slow errors (>200ms): 8 rows
+    
 
 
 if __name__ == "__main__":
