@@ -5,7 +5,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
-from dateutil import parser
+import pandas as pd
+import asyncio
 
 
 @dataclass
@@ -82,6 +83,62 @@ async def read_and_parse_log(filepath: str) -> list[LogEntry]:
             log_entries.append(parse_log_line(line))
 
     return log_entries
+
+async def process_multiple_logs(filepaths: list[str]) -> list[LogEntry]:
+    """
+    Process multiple log files concurrently.
+
+    Args:
+        filepaths: List of log file paths
+
+    Returns:
+        Combined list of all LogEntry objects
+    """
+    # TODO: Use asyncio.gather() to read all files concurrently
+    # Flatten results into single list
+    coroutines = []
+    for path in filepaths:
+        coroutines.append(read_and_parse_log(path))
+
+    logs = []
+    logs.extend(await asyncio.gather(*coroutines))
+
+    return logs
+
+def entries_to_dataframe(entries: list[LogEntry]) -> pd.DataFrame:
+    """
+    Convert LogEntry objects to DataFrame.
+
+    Args:
+        entries: List of LogEntry objects
+
+    Returns:
+        Pandas DataFrame
+    """
+    # TODO: Convert to list of dicts, create DataFrame
+    pass
+
+
+def analyze_logs(df: pd.DataFrame) -> dict:
+    """
+    Perform analysis on logs DataFrame.
+
+    Returns dictionary with:
+    - total_count: Total number of logs
+    - level_distribution: Count by level
+    - avg_response_time: Average response time (if present)
+    - errors_per_minute: Error rate
+    - slowest_requests: Top 5 slowest requests
+
+    Args:
+        df: Logs DataFrame
+
+    Returns:
+        Analysis results dictionary
+    """
+    # TODO: Implement all analyses
+    pass
+
 
 
 async def run_pipeline(filepaths: list[str]) -> dict:
