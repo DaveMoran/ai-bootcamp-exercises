@@ -143,21 +143,12 @@ def main():
     data = inspect_data(logs)
 
     print(f'Dataset: {data['shape'][0]} rows, {data['shape'][1]} columns')
-    print('\nLevel counts:')
-    print(f"INFO  {inspect_data(filter_by_level(logs, 'INFO'))['shape'][0]}")
-    print(f"WARN  {inspect_data(filter_by_level(logs, 'WARN'))['shape'][0]}")
-    print(f"ERROR {inspect_data(filter_by_level(logs, 'ERROR'))['shape'][0]}")
-    # Level counts:
-    # INFO     900
-    # WARN      80
-    # ERROR     20
 
-    # Average response time by source:
-    # service-0    149.5
-    # service-1    149.6
-    # service-2    149.7
-    # service-3    149.8
-    # service-4    149.9
+    print('\nLevel counts:')
+    print(count_by_level(logs).to_string())
+
+    print("\nAverage response time by source:")
+    print(average_response_time_by_source(logs).to_string())
 
     # Slow errors (>200ms): 8 rows
 
