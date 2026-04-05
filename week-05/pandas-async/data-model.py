@@ -15,5 +15,10 @@ class LogEntry:
 
     def to_dict(self) -> dict:
         """Convert to dictionary for DataFrame."""
-        # TODO: Implement
-        pass
+        return {
+            'timestamp': self.timestamp,
+            'level': self.level,
+            'source': self.source,
+            'message': self.message,
+            'response_time': self.response_time
+        }
