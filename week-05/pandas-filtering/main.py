@@ -1,6 +1,7 @@
 from json import load
 
 import pandas as pd
+from dateutil import parser
 
 
 def load_logs(filepath: str) -> pd.DataFrame:
@@ -62,7 +63,17 @@ def filter_by_time_range(df: pd.DataFrame, start: str, end: str) -> pd.DataFrame
         Filtered DataFrame
     """
     # TODO: Convert strings to datetime, filter
-    pass
+    filtered_df = df
+    if start:
+        filtered_df = df.loc[
+            df["timestamp"] >= parser.parse(start)
+        ]
+
+    if end:
+        filtered_df = filtered_df.loc[
+            filtered_df["timestamp"] < parser.parse(end)
+        ]
+    return filtered_df
 
 
 def filter_slow_requests(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
@@ -131,6 +142,9 @@ def main():
 
     error_logs = filter_by_level(logs, 'ERROR')
     print(inspect_data(error_logs))
+
+    logs_before_eleven = filter_by_time_range(logs, '', "2026-02-05 11:00:00")
+    print(inspect_data(logs_before_eleven))
 
 
 if __name__ == "__main__":
