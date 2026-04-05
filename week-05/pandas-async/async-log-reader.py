@@ -43,12 +43,17 @@ async def parse_log_line(line: str) -> Optional[LogEntry]:
     """
     datetime = re.search("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}", line)
     if datetime:
-        datetime_date = parser.parse(datetime.group(0))
+        datetime = parser.parse(datetime.group(0))
     else:
         return None
 
+    level = re.search("\[(.*?)\]", line)
+    if level:
+        level = level.group(1)
+    else:
+        return None
 
-    return LogEntry(datetime_date, "", "", "", 0)
+    return LogEntry(datetime, level, "", "", 0)
 
 
 async def read_and_parse_log(filepath: str) -> list[LogEntry]:
