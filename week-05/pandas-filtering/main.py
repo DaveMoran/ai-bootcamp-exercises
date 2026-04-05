@@ -133,7 +133,9 @@ def find_slow_errors(df: pd.DataFrame, threshold: int) -> pd.DataFrame:
         Filtered DataFrame
     """
     # TODO: Combine multiple conditions
-    pass
+    errors = filter_by_level(df, 'ERROR')
+    slow_errors = filter_slow_requests(errors, threshold)
+    return slow_errors
 
 
 def main():
@@ -156,6 +158,9 @@ def main():
 
     source_avg = average_response_time_by_source(logs)
     print(source_avg)
+
+    slow_errors = find_slow_errors(logs, 200)
+    print(inspect_data(slow_errors))
 
 
 if __name__ == "__main__":
