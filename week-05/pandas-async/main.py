@@ -116,7 +116,7 @@ def entries_to_dataframe(entries: list[LogEntry]) -> pd.DataFrame:
         Pandas DataFrame
     """
     # TODO: Convert to list of dicts, create DataFrame
-    pass
+    return pd.DataFrame(entries)
 
 
 def analyze_logs(df: pd.DataFrame) -> dict:
@@ -137,7 +137,13 @@ def analyze_logs(df: pd.DataFrame) -> dict:
         Analysis results dictionary
     """
     # TODO: Implement all analyses
-    pass
+    return {
+        'total_count': 0,
+        'level_distribution': 0,
+        'avg_response_time': 0,
+        'errors_per_minute': 0,
+        'slowest_requests': []
+    }
 
 
 
@@ -153,10 +159,16 @@ async def run_pipeline(filepaths: list[str]) -> dict:
     """
     # TODO:
     # 1. Read and parse logs (async)
+    parsed_logs = await process_multiple_logs(filepaths)
+
     # 2. Convert to DataFrame (sync)
+    entries_df = entries_to_dataframe(parsed_logs)
+
     # 3. Analyze (sync)
+    analysis = analyze_logs(entries_df)
+
     # 4. Return results
-    pass
+    return analysis
 
 
 def main():
