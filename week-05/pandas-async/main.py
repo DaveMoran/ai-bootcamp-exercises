@@ -195,14 +195,11 @@ async def main():
     print("\nPerformance:")
     print(f"Average response time: {results['avg_response_time']}ms")
     print(f"Error rate: {results['errors_per_minute']} errors/minute:")
-    #
 
-    # Slowest requests:
-    # 1. 2026-02-05 10:15:20 [WARN] api: Message 184 (498ms)
-    # 2. 2026-02-05 10:23:45 [ERROR] db: Message 285 (497ms)
-    # 3. 2026-02-05 10:31:10 [INFO] cache: Message 374 (496ms)
-    # 4. 2026-02-05 10:42:55 [WARN] queue: Message 515 (495ms)
-    # 5. 2026-02-05 10:55:30 [ERROR] worker: Message 666 (494ms)
+    print("\nSlowest requests:")
+    for idx, row in enumerate(results['slowest_requests'].itertuples(), start=1):
+        print(f"{idx}. {row.timestamp} [{row.level}] {row.source}: {row.message} ({row.response_time}ms)")
+
 
 
 if __name__ == "__main__":
