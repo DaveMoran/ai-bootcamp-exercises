@@ -80,7 +80,7 @@ async def read_and_parse_log(filepath: str) -> list[LogEntry]:
     log_entries = []
     async with aiofiles.open(filepath, "r") as afp:
         async for line in afp:
-            log_entries.append(parse_log_line(line))
+            log_entries.append(await parse_log_line(line))
 
     return log_entries
 
@@ -146,7 +146,6 @@ def analyze_logs(df: pd.DataFrame) -> dict:
     }
 
 
-
 async def run_pipeline(filepaths: list[str]) -> dict:
     """
     Complete async pipeline: read -> parse -> DataFrame -> analyze.
@@ -171,8 +170,16 @@ async def run_pipeline(filepaths: list[str]) -> dict:
     return analysis
 
 
-def main():
-    # Processing 3 log files asynchronously...
+async def main():
+    files = [
+        "./sample_data/app_1.log",
+        "./sample_data/app_2.log",
+        "./sample_data/app_3.log",
+    ]
+    print(f"Processing {len(files)} log files asynchronously...")
+    
+    results = await run_pipeline(files)
+    print(results)
     # Read 1500 total log entries
 
     # Analysis Results:
@@ -196,4 +203,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
