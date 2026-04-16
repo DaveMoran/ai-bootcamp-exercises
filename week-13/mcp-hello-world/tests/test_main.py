@@ -15,33 +15,23 @@ def test_greet_formal():
 
 def test_add_numbers_integers():
     result = add_numbers(2, 3)
-    expected = {
-        'a': 2,
-        'b': 3,
-        'sum': 5,
-        'is_integer': True
-    }
+    expected = {"a": 2, "b": 3, "sum": 5, "is_integer": True}
     assert result == expected
 
 
 def test_add_numbers_floats():
     result = add_numbers(2.5, 3.7)
-    expected = {
-        'a': 2.5,
-        'b': 3.7,
-        'sum': 6.2,
-        'is_integer': False
-    }
+    expected = {"a": 2.5, "b": 3.7, "sum": 6.2, "is_integer": False}
     assert result == expected
 
 
 def test_word_stats():
     text = "Hello world! Hello everyone. This is a test."
     result = word_stats(text)
-    assert result['word_count'] == 8
-    assert result['char_count'] == len(text)
-    assert result['line_count'] == 1
-    assert result['most_common_word'] == 'hello'
+    assert result["word_count"] == 8
+    assert result["char_count"] == len(text)
+    assert result["line_count"] == 1
+    assert result["most_common_word"] == "hello"
 
 
 def test_safe_divide_normal():

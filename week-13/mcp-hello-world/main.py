@@ -18,7 +18,7 @@ def greet(name: str, formal: bool = False) -> str:
     greeting as a string.
     """
     if formal:
-        return f'Good day, {name}.'
+        return f"Good day, {name}."
     return f"Hey, {name}!"
 
 
@@ -31,12 +31,7 @@ def add_numbers(a: float, b: float) -> dict:
     (True if the sum has no decimal component).
     """
     # TODO: implement — return a dict, not just the sum
-    return {
-        'a': a,
-        'b': b,
-        'sum': a + b,
-        'is_integer': (a + b).is_integer()
-    }
+    return {"a": a, "b": b, "sum": a + b, "is_integer": (a + b).is_integer()}
 
 
 @mcp.tool()
@@ -53,7 +48,9 @@ def word_stats(text: str) -> dict:
         "word_count": len(text.split()),
         "char_count": len(text),
         "line_count": len(text.split("\n")),
-        "most_common_word": Counter(text.translate(str.maketrans('', '', string.punctuation)).lower().split()).most_common(1)[0][0],
+        "most_common_word": Counter(
+            text.translate(str.maketrans("", "", string.punctuation)).lower().split()
+        ).most_common(1)[0][0],
     }
 
 
@@ -67,7 +64,9 @@ def safe_divide(numerator: float, denominator: float) -> float:
     Returns the quotient as a float.
     """
     if denominator == 0:
-        raise ToolError('You cannot divide by zero. Try again with a different denominator')
+        raise ToolError(
+            "You cannot divide by zero. Try again with a different denominator"
+        )
     return numerator / denominator
 
 
