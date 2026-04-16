@@ -57,5 +57,19 @@ def word_stats(text: str) -> dict:
     }
 
 
+@mcp.tool()
+def safe_divide(numerator: float, denominator: float) -> float:
+    """
+    Divide numerator by denominator.
+
+    Raises a ToolError if denominator is zero, with a message that
+    explains what happened and what the caller should do instead.
+    Returns the quotient as a float.
+    """
+    if denominator == 0:
+        raise ToolError('You cannot divide by zero. Try again with a different denominator')
+    return numerator / denominator
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
