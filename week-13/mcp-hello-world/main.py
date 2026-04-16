@@ -53,7 +53,7 @@ def word_stats(text: str) -> dict:
         "word_count": len(text.split()),
         "char_count": len(text),
         "line_count": len(text.split("\n")),
-        "most_common_word": Counter(text.translate(str.maketrans('', '', string.punctuation)).split()).most_common(1)[0][0],
+        "most_common_word": Counter(text.translate(str.maketrans('', '', string.punctuation)).lower().split()).most_common(1)[0][0],
     }
 
 
