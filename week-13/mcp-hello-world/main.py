@@ -43,7 +43,6 @@ def word_stats(text: str) -> dict:
     and 'most_common_word' (the word that appears most often, lowercased,
     ignoring punctuation).
     """
-    print(Counter(text.split()).most_common(1)[0])
     return {
         "word_count": len(text.split()),
         "char_count": len(text),
