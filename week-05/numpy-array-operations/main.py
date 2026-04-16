@@ -63,10 +63,7 @@ def count_above_threshold(arr: np.ndarray, threshold: float) -> int:
         Count of elements
     """
     # TODO: Use boolean indexing and .sum()
-    mask = arr > threshold
-    filtered_arr = arr[mask]
-
-    return filtered_arr.sum()
+    return int((arr > threshold).sum())
 
 
 def normalize_array(arr: np.ndarray) -> np.ndarray:
@@ -103,6 +100,27 @@ def apply_threshold(arr: np.ndarray, low: float, high: float) -> np.ndarray:
     clipped_arr = np.clip(arr, low, high)
 
     return clipped_arr
+
+
+def compare_vectorized_vs_loop(size: int = 1000000):
+    """Compare vectorized operation vs Python loop."""
+    arr = np.random.rand(size)
+
+    # Vectorized
+    import time
+
+    start = time.time()
+    result_vec = arr * 2 + 1
+    vec_time = time.time() - start
+
+    # Python loop
+    start = time.time()
+    result_loop = np.array([x * 2 + 1 for x in arr])
+    loop_time = time.time() - start
+
+    print(f"Vectorized: {vec_time:.4f}s")
+    print(f"Loop: {loop_time:.4f}s")
+    print(f"Speedup: {loop_time/vec_time:.1f}x")
 
 
 if __name__ == "__main__":
