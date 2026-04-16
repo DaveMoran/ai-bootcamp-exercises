@@ -23,7 +23,7 @@ def greet(name: str, formal: bool = False) -> str:
 
 
 @mcp.tool()
-def add_numbers(a: float, b: float) -> dict:
+def add_numbers(a: float, b: float) -> dict[str, float | bool]:
     """
     Add two numbers and return the result with metadata.
 
@@ -35,7 +35,7 @@ def add_numbers(a: float, b: float) -> dict:
 
 
 @mcp.tool()
-def word_stats(text: str) -> dict:
+def word_stats(text: str) -> dict[str, int | str]:
     """
     Return basic statistics about a block of text.
 
